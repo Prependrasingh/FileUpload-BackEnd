@@ -86,10 +86,10 @@ Base URL: `/api/v1/upload`
 
 | Method | Endpoint     | Description                                | Body (form-data)                          |
 |--------|--------------|---------------------------------------------|--------------------------------------------|
-| POST   | `/local`     | Upload a file to local server storage       | `file`                                     |
-| POST   | `/image`     | Upload an image/PDF to Cloudinary           | `imageFile`, `name`, `email`, `tags`       |
-| POST   | `/video`     | Upload a video to Cloudinary                | `videoFile`, `name`, `email`, `tags`       |
-| POST   | `/resize`    | Upload + compress an image to Cloudinary    | `imageFile`, `name`, `email`, `tags`       |
+| POST   | `/localFileUpload`     | Upload a file to local server storage       | `file`                                     |
+| POST   | `/imageUpload`     | Upload an image/PDF to Cloudinary           | `imageFile`, `name`, `email`, `tags`       |
+| POST   | `/videoUpload`     | Upload a video to Cloudinary                | `videoFile`, `name`, `email`, `tags`       |
+| POST   | `/imageResizeUpload`    | Upload + compress an image to Cloudinary    | `imageFile`, `name`, `email`, `tags`       |
 
 ### Supported File Types
 
@@ -100,7 +100,7 @@ Base URL: `/api/v1/upload`
 
 ### Upload Image
 
-**POST** `/api/v1/upload/image`
+**POST** `/api/v1/upload/imageUpload`
 
 Send as `multipart/form-data`:
 
@@ -123,7 +123,7 @@ Send as `multipart/form-data`:
 
 ### Upload Video
 
-**POST** `/api/v1/upload/video`
+**POST** `/api/v1/upload/videoUpload`
 
 Send as `multipart/form-data`:
 
@@ -145,13 +145,13 @@ Send as `multipart/form-data`:
 
 ### Resize + Upload Image
 
-**POST** `/api/v1/upload/resize`
+**POST** `/api/v1/upload/imageResizeUpload`
 
 Same fields as `/image`, but compresses the image (quality reduced) before storing on Cloudinary — useful for reducing file size for thumbnails or previews.
 
 ### Upload Locally (no Cloudinary)
 
-**POST** `/api/v1/upload/local`
+**POST** `/api/v1/upload/localFileUpload`
 
 Send as `multipart/form-data`:
 

@@ -43,7 +43,6 @@ function isfileTypeSupported(type, supportedTypes) {
 async function UploadFileToCloudinary(file, folder, quality) {
   const options = { folder };
   options.resource_type = "auto";
-  options.fetch_format = "auto";
   if (quality) {
     options.quality = quality; // ← use the actual value passed in, not hardcoded "auto"
   }

@@ -42,11 +42,11 @@ function isfileTypeSupported(type, supportedTypes) {
 // image upload to cloudinary function
 async function UploadFileToCloudinary(file, folder, quality) {
   const options = { folder };
-  if (quality) {
-    options.quality = "auto";
-  }
   options.resource_type = "auto";
   options.fetch_format = "auto";
+  if (quality) {
+    options.quality = quality; // ← use the actual value passed in, not hardcoded "auto"
+  }
   return await cloudinary.uploader.upload(file.tempFilePath, options);
 }
 
@@ -64,7 +64,7 @@ exports.imageUpload = async (req, res) => {
     // validation
 
     if (!isfileTypeSupported(fileType, supportedTypes)) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "file type not supported Please Upload supported file type",
       });
@@ -157,7 +157,7 @@ exports.imageResizeUpload = async (req, res) => {
     // validation
 
     if (!isfileTypeSupported(fileType, supportedTypes)) {
-      res.status(400).json({
+      return res.status(400).json({
         success: false,
         message: "file type not supported Please Upload supported file type",
       });
